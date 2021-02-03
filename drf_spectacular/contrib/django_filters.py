@@ -68,6 +68,8 @@ class DjangoFilterExtension(OpenApiFilterExtension):
         enum = schema.pop('enum', None)
         if 'choices' in filter_field.extra:
             enum = [c for c, _ in filter_field.extra['choices']]
+        elif 'items' in filter_field.extra:
+            enum = [c for c, _ in filter_field.extra['items']]
         if enum:
             schema['enum'] = sorted(enum)
 
